@@ -10,11 +10,11 @@ import { selectAllUsers } from '../store/user.selectors';
   template: `
     <h2>רשימת משתמשים</h2>
     <ul>
+     <li *ngFor="let user of users$ | async">{{ user.name }}</li>
     </ul>
     `
   })
   export class UserListComponent implements OnInit {
-  // <li *ngFor="let user of users$ | async">{{ user.name }}</li>
   users$: Observable<User[]>;
 
   constructor(private store: Store) {

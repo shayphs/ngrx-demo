@@ -1,32 +1,24 @@
-// user.effects.ts (עם הקוד הפעיל)
-
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { UserService } from '../services/user.service';
-import { loadUsers, loadUsersSuccess, loadUsersFailure } from './user.actions';
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import * as UserActions from './user.actions';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable()
 export class UserEffects {
-  
-  // 1. נדאג שהקונסטרוקטור הוא ראשון
-  constructor(
-    private actions$: Actions, 
-    private userService: UserService
-  ) {}
+  private actions$ = inject(Actions);
+  private userService = inject(UserService);
 
-  // 2. נדאג שהאפקט מחזיר Observable תקין 
-  loadUsers$ = createEffect(() => {
-    // השורה הזו היא שורה 12 אם השארת את ה-console.log
-    return this.actions$.pipe( 
-      ofType(loadUsers),
+  loadUsers$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(UserActions.loadUsers),
       mergeMap(() =>
-        this.userService.getUsers().pipe( // 👈 זה הקריאה לשירות שהגדרנו
-          map(users => loadUsersSuccess({ users })),
-          catchError(error => of(loadUsersFailure({ error })))
+        this.userService.getUsers().pipe(
+          map(users => UserActions.loadUsersSuccess({ users })),
+          catchError(error => of(UserActions.loadUsersFailure({ error })))
         )
       )
     )
-  });
+  );
 }
