@@ -9,7 +9,6 @@ export class UserEffects {
   private actions$ = inject(Actions);
   private userService = inject(UserService);
 
-  // העלאת משתמשים מהשרת (Mock)
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.loadUsers),

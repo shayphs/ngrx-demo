@@ -6,9 +6,8 @@ import { mockUsers } from '../store/users/user.state';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   getUsers(): Observable<User[]> {
-    // מחזיר את ה־mock users כאילו הגיעו מהשרת
     return of(mockUsers).pipe(
-      delay(2000) // מעכב ב-2 שניות
+      delay(2000)
     );
   }
 }

@@ -19,7 +19,6 @@ describe('UserOrdersComponent', () => {
     }).compileComponents();
 
     store = TestBed.inject(Store) as jasmine.SpyObj<Store<any>>;
-    // מחרוזות סלקטורים מדומות
     store.select.and.callFake((selector: any) => {
       if (selector === selectUserWithOrdersTotal) {
         return of({ id: 1, name: 'Shay', total: 100 });
