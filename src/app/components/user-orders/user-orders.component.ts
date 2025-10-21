@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ButtonComponent } from '@app/shared/button/button.component';
 import { CardComponent } from '@app/shared/card/card.component';
 import { LoaderComponent } from '@app/shared/loader/loader.component';
@@ -24,6 +24,7 @@ import { AnimateCountDirective } from '@app/shared/directives/animate-count.dire
   ],
   templateUrl: './user-orders.component.html',
   styleUrls: ['./user-orders.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UserOrdersComponent {
   user$!: Observable<{ name: string; total: number; id: number } | null>;

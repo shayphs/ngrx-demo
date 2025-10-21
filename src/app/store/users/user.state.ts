@@ -1,5 +1,5 @@
 import { EntityState, createEntityAdapter } from '@ngrx/entity';
-import { User } from '../../models/models';
+import { User } from '../../models/user-order.model';
 
 export interface UserState extends EntityState<User> {
   selectedUserId: number | null;
