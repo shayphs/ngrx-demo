@@ -1,11 +1,10 @@
-משתמשים
-<div *ngIf="user$ | async as user">
-{{user | json}}
+<h1>Users with Orders</h1>
+<div class="user-display-card" *ngIf="user$ | async as user">
   <app-user-name [name]="user.name"></app-user-name>
   <app-user-total [total]="user.total"></app-user-total>
 </div>
 
-<div style="margin-top: 20px;">
+<div class="user-selection-buttons">
   <button *ngFor="let u of allUsers$ | async" (click)="selectUser(u.id)">
     Select {{ u.name }}
   </button>

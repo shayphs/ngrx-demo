@@ -29,5 +29,5 @@ export const selectOrdersOfSelectedUser = createSelector(
 export const selectUserWithOrdersTotal = createSelector(
   selectSelectedUser,
   selectOrdersOfSelectedUser,
-  (user, orders) => user ? { name: user.name, total: orders.reduce((acc, o) => acc + o.total, 0) } : null
+  (user, orders) => user ? { name: user.name, id: user.id, total: orders.reduce((acc, o) => acc + o.total, 0) } : null
 );

@@ -1,0 +1,184 @@
+/* --- משתנים גלובליים ועיצוב בסיס --- */
+:host {
+    /* הגדרת פלטת צבעים שמחה */
+    --color-primary: #1e88e5; /* כחול בהיר */
+    --color-secondary: #ff7043; /* קוראל תוסס (שמחה) */
+    --color-bg-light: #f3f9ff; /* רקע בהיר מאוד */
+    --color-text-dark: #2c3e50;
+    --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+    
+    display: block;
+    box-sizing: border-box; 
+    padding: 30px;
+    background-color: var(--color-bg-light);
+    min-height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    color: var(--color-primary);
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    animation: fadeInDown 0.5s ease-out; /* אנימציית כניסה עדינה */
+}
+
+/* --- כרטיס המשתמש הנבחר (הנתונים) --- */
+/* --- כרטיס המשתמש הנבחר (הנתונים) --- */
+.user-display-card {
+    max-width: 500px;
+    margin: 0 auto 50px auto;
+    padding: 25px 40px;
+    
+    /* רקע Gradient שמח */
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb); 
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+    
+    /* ⬅️ הוספה עבור אפקט ה"בורדר המסתובב" */
+    position: relative; 
+    overflow: hidden; /* חותך את ה"בורדר" העודף */
+
+    /* אנימציה: אפקט שינוי עדין */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 0.8s 0.2s forwards; /* עיכוב כניסה קל */
+}
+
+/* ⬅️ האלמנט שיוצר את ה"בורדר המסתובב" (הבסיס המסתובב) */
+.user-display-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    
+    /* גרדיאנט קוני שמסתובב ליצירת אפקט הנצנוץ */
+    background: conic-gradient(
+        transparent 0%, 
+        transparent 30%, 
+        rgb(255, 255, 255) 50%, /* שיא הנצנוץ (קוראל) */
+        transparent 70%,
+        transparent 100%
+    );
+    z-index: 0; /* שכבה נמוכה יותר */
+    opacity: 0.8;
+    
+    /* מעגלים את הבסיס ומפעילים את האנימציה */
+    border-radius: 20px; 
+    animation: rotateBorder 8s linear infinite; /* סיבוב איטי ורציף */
+}
+
+/* ⬅️ המסכה שיוצרת את אפקט ה"מסגרת" */
+.user-display-card::after {
+    content: '';
+    position: absolute;
+    top: 2px; 
+    bottom: 2px; 
+    left: 2px;
+    right: 2px;
+    border-radius: 15px; 
+    /* רקע הכרטיס הפנימי. חשוב שיהיה תואם לרקע של הכרטיס הראשי */
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb); 
+    z-index: 1; /* מעל ה-::before ומאחורי התוכן */
+    opacity: 1;
+}
+
+/* מעבירים את כל התוכן ל-z-index גבוה יותר כדי שיהיה מעל ה-::before וה-::after */
+.user-display-card > * {
+    position: relative;
+    z-index: 2; 
+}
+
+
+/* ... [שאר הקובץ] ... */
+
+
+/* ⬅️ אנימציה חדשה לסיבוב המסגרת */
+@keyframes rotateBorder {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- כפתורי בחירת המשתמש --- */
+.user-selection-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 20px;
+}
+
+button {
+    background-color: var(--color-secondary);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 12px 25px;
+    font-size: 1rem;
+    /* font-weight: 600; */
+    cursor: pointer;
+    box-shadow: 0 3px 8px rgba(255, 112, 67, 0.4);
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    /* אנימציה עדינה */
+    transition: all 0.2s ease-out;
+
+    position: relative;
+    overflow: hidden; 
+    z-index: 1; /* מוודא שהכפתור מעל אפקט הנצנוץ */
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%; /* מתחיל משמאל לכפתור */
+    width: 100%;
+    height: 100%;
+    
+    /* התיקון: גרדיינט לינארי רך שמטשטש את הקצוות */
+    background: linear-gradient(
+        90deg, 
+        rgba(255, 255, 255, 0.1) 0%, 
+        rgba(255, 255, 255, 0.6) 50%, 
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    filter: blur(2px); /* הוספת טשטוש קל לרכות */
+    transform: skewX(-30deg); 
+    
+    /* מוודא שאפקט הנצנוץ מתחת לטקסט */
+    z-index: 0; 
+    transition: all 0.5s;
+}
+
+
+/* אפקט ריחוף: שינוי צבע והרמה */
+button:hover {
+    background-color: #ff5722; /* קוראל מעט כהה יותר */
+    transform: translateY(-2px) scale(1.03); 
+    box-shadow: 0 5px 15px rgba(255, 112, 67, 0.6);
+}
+
+button:hover::after {
+    left: 100%; /* מזיז את אפקט הנצנוץ מעבר לצד ימין */
+}
+
+/* אפקט לחיצה */
+button:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+/* --- Keyframe Animations --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

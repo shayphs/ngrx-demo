@@ -11,7 +11,7 @@ import { UserEffects } from './store/users/user.effects';
 import { UserNameComponent } from './components/user-orders/user-name.component';
 import { UserTotalComponent } from './components/user-orders/user-total.component';
 import { ordersReducer } from './store/users/order.reducer';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { ordersReducer } from './store/users/order.reducer';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
 
     // התחלת ה-Store עם ה-Reducer שלך
     StoreModule.forRoot({
