@@ -3,6 +3,7 @@
     /* הגדרת פלטת צבעים שמחה */
     --color-primary: #1e88e5; /* כחול בהיר */
     --color-secondary: #ff7043; /* קוראל תוסס (שמחה) */
+    --color-text-secondary: #b8421e; /* קוראל תוסס (שמחה) */
     --color-bg-light: #f3f9ff; /* רקע בהיר מאוד */
     --color-text-dark: #2c3e50;
     --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
