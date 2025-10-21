@@ -10,6 +10,7 @@ import { userReducer } from './store/users/user.reducer';
 import { UserEffects } from './store/users/user.effects';
 import { UserNameComponent } from './components/user-orders/user-name.component';
 import { UserTotalComponent } from './components/user-orders/user-total.component';
+import { ordersReducer } from './store/users/order.reducer';
 
 
 @NgModule({
@@ -17,14 +18,16 @@ import { UserTotalComponent } from './components/user-orders/user-total.componen
     AppComponent,
     UserOrdersComponent,
     UserNameComponent,
-    UserOrdersComponent,
     UserTotalComponent,
   ],
   imports: [
     BrowserModule,
 
     // התחלת ה-Store עם ה-Reducer שלך
-    StoreModule.forRoot({ users: userReducer }),
+    StoreModule.forRoot({
+      users: userReducer,
+      orders: ordersReducer
+    }),
 
     // התחלת ה-Effects
     EffectsModule.forRoot([UserEffects]),
@@ -38,4 +41,4 @@ import { UserTotalComponent } from './components/user-orders/user-total.componen
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

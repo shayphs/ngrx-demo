@@ -3,7 +3,7 @@ import { userAdapter, UserState } from './user.state';
 import { AppState } from '../app.state';
 
 // סלקטור לסטייט של המשתמשים
-export const selectUserState = createFeatureSelector<AppState, UserState>('users');
+export const selectUserState = createFeatureSelector<UserState>('users');
 
 // אקסטרקטור של כל המשתמשים
 const { selectAll } = userAdapter.getSelectors(selectUserState);

@@ -1,14 +1,21 @@
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { User } from '../../models/models';
-
-// Entity adapter לניהול משתמשים
-export const userAdapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 export interface UserState extends EntityState<User> {
   selectedUserId: number | null;
 }
 
-// סטייט התחלתי
+// יצירת Adapter
+export const userAdapter = createEntityAdapter<User>();
+
+// Mock users
+export const mockUsers: User[] = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' },
+  { id: 3, name: 'Charlie' },
+];
+
+// Initial state
 export const initialUserState: UserState = userAdapter.getInitialState({
-  selectedUserId: null,
+  selectedUserId: 1,
 });
