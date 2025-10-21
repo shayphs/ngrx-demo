@@ -1,4 +1,6 @@
+משתמשים
 <div *ngIf="user$ | async as user">
+{{user | json}}
   <app-user-name [name]="user.name"></app-user-name>
   <app-user-total [total]="user.total"></app-user-total>
 </div>
