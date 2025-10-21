@@ -36,8 +36,6 @@ export class UserOrdersComponent {
   }
 
   selectUser(id: number) {
-    console.log('selectUser');
-    
     this.store.dispatch(UserActions.selectUser({ userId: id }));
   }
 }
