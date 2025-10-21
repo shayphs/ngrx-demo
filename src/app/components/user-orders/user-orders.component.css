@@ -6,6 +6,7 @@
     --color-text-secondary: #b8421e; /* קוראל תוסס (שמחה) */
     --color-bg-light: #f3f9ff; /* רקע בהיר מאוד */
     --color-text-dark: #2c3e50;
+    --color-text-muted: #4b5f74;
     --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
     
     display: block;
@@ -31,7 +32,7 @@ h1 {
     max-width: 500px;
     margin: 0 auto 50px auto;
     padding: 25px 40px;
-    
+    max-height: auto;
     /* רקע Gradient שמח */
     background: linear-gradient(135deg, #e3f2fd, #bbdefb); 
     border-radius: 20px;
@@ -42,7 +43,7 @@ h1 {
     overflow: hidden; /* חותך את ה"בורדר" העודף */
 
     /* אנימציה: אפקט שינוי עדין */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, max-height 0.3s ease-in-out;
     opacity: 0;
     animation: fadeIn 0.8s 0.2s forwards; /* עיכוב כניסה קל */
 }
@@ -182,4 +183,79 @@ button:active {
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.credit-box {
+    h4 {
+        color: var(--color-text-muted);
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 3px;
+    }
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    span {
+        font-weight: 600;
+        margin: 0 5px;
+        display: inline-block;
+    }
+    .label {
+        color: var(--color-text-dark);
+        font-weight: 300;
+    }
+}
+
+
+/* --- LOADING STATE AND LOADER --- */
+
+.loading-state {
+    /* הופך את הטעינה למרוכזת יפה באמצע */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px; /* נותן מספיק מקום לטוען */
+    padding: 40px;
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+}
+
+.loader {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    /* אנימציה עם שני פסים מסתובבים: */
+    background: conic-gradient(
+        transparent 0deg, 
+        transparent 100deg, 
+        var(--color-primary) 110deg, /* פס ראשון בצבע ראשי */
+        transparent 180deg, 
+        transparent 260deg, 
+        var(--color-secondary) 270deg, /* פס שני בצבע משני */
+        transparent 360deg
+    );
+    animation: spin 1.2s linear infinite; /* מהירות בינונית */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+/* המסכה הפנימית שנותנת לטוען מראה של טבעת */
+.loader::before {
+    content: '';
+    position: absolute;
+    inset: 6px; /* מותיר שוליים של 6px */
+    background-color: #e3f2fd;
+    border-radius: inherit;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
 }

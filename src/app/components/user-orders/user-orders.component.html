@@ -1,11 +1,33 @@
 <h1>Users with Orders</h1>
-<div class="user-display-card" *ngIf="user$ | async as user">
-  <app-user-name [name]="user.name"></app-user-name>
-  <app-user-total [total]="user.total"></app-user-total>
+<div class="user-display-card">
+  <div *ngIf="user$ | async as user; else loading">
+
+    <app-user-name [name]="user.name"></app-user-name>
+
+    <app-user-total [total]="user.total"></app-user-total>
+  </div>
 </div>
 
 <div class="user-selection-buttons">
   <button *ngFor="let u of allUsers$ | async" (click)="selectUser(u.id)">
-    Select {{ u.name }}
+    <small>Select</small> {{ u.name }}
   </button>
+</div>
+
+<ng-template #loading>
+  <div style="display: flex; justify-content: center;">
+    <div class="loader">
+    </div>
+  </div>
+</ng-template>
+
+
+<div class="credit-box">
+  <h4>NGRX Demo app</h4>
+  <div>
+    <span class="label">Created by:</span>
+    <span>Shay Pinhas</span>
+    <span><a href="https://www.linkedin.com/in/shay-pinhas/" target="_blank"
+        rel="noopener noreferrer">Linkedin</a></span>
+  </div>
 </div>
