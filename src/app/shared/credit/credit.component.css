@@ -1,0 +1,27 @@
+.credit-box {
+    h4 {
+        color: var(--color-text-muted);
+        margin-bottom: 10px;
+        font-size: 20px;
+        font-weight: 300;
+        letter-spacing: 3px;
+    }
+
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    margin-top: 50px;
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+
+    span {
+        font-weight: 600;
+        margin: 0 5px;
+        display: inline-block;
+    }
+
+    .label {
+        color: var(--color-text-dark);
+        font-weight: 300;
+    }
+}

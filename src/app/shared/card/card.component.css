@@ -1,0 +1,54 @@
+.user-display-card {
+    max-width: 500px;
+    margin: 0 auto 50px auto;
+    padding: 25px 40px;
+    max-height: auto;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    border-radius: 20px;
+    box-shadow: var(--shadow-light);
+
+    position: relative;
+    overflow: hidden;
+
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, max-height 0.3s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 0.8s 0.2s forwards;
+}
+
+.user-display-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+
+    background: conic-gradient(transparent 0%,
+            transparent 30%,
+            rgb(255, 255, 255) 50%,
+            transparent 70%,
+            transparent 100%);
+    z-index: 0;
+    opacity: 0.8;
+
+    border-radius: 20px;
+    animation: spin 8s linear infinite;
+}
+
+.user-display-card::after {
+    content: '';
+    position: absolute;
+    top: 2px;
+    bottom: 2px;
+    left: 2px;
+    right: 2px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+    z-index: 1;
+    opacity: 1;
+}
+
+.user-display-card>* {
+    position: relative;
+    z-index: 2;
+}
