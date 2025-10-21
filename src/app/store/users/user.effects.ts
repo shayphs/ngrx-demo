@@ -1,22 +1,21 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { UserService } from '../services/user.service';
+import { UserService } from '../../services/user.service';
 import * as UserActions from './user.actions';
-import { map, mergeMap, catchError } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 
 @Injectable()
 export class UserEffects {
   private actions$ = inject(Actions);
   private userService = inject(UserService);
 
+  // העלאת משתמשים מהשרת (Mock)
   loadUsers$ = createEffect(() =>
     this.actions$.pipe(
       ofType(UserActions.loadUsers),
-      mergeMap(() =>
+      switchMap(() =>
         this.userService.getUsers().pipe(
-          map(users => UserActions.loadUsersSuccess({ users })),
-          catchError(error => of(UserActions.loadUsersFailure({ error })))
+          map(users => UserActions.loadUsersSuccess({ users }))
         )
       )
     )

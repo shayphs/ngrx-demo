@@ -5,14 +5,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { UserListComponent } from './components/user-list.component';
-import { userReducer } from './store/user.reducer';
-import { UserEffects } from './store/user.effects';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
+import { userReducer } from './store/users/user.reducer';
+import { UserEffects } from './store/users/user.effects';
+import { UserNameComponent } from './components/user-orders/user-name.component';
+import { UserTotalComponent } from './components/user-orders/user-total.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserListComponent // קומפוננטת רשימת משתמשים
+    UserOrdersComponent,
+    UserNameComponent,
+    UserOrdersComponent,
+    UserTotalComponent,
   ],
   imports: [
     BrowserModule,

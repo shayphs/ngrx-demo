@@ -4,8 +4,8 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 
 import { AppModule } from './app/app.module';
-import { userReducer } from './app/store/user.reducer';
-import { UserEffects } from './app/store/user.effects';
+// import { userReducer } from './app/store/user.reducer';
+// import { UserEffects } from './app/store/user.effects';
 
 // ב-Angular 18 צריך לטעון את NgRx דרך AppModule
 // כל Providers שנדרשים ל-Effects ו-Store מוטענים מה־AppModule עצמו

@@ -1,0 +1,10 @@
+<div *ngIf="user$ | async as user">
+  <app-user-name [name]="user.name"></app-user-name>
+  <app-user-total [total]="user.total"></app-user-total>
+</div>
+
+<div style="margin-top: 20px;">
+  <button *ngFor="let u of allUsers$ | async" (click)="selectUser(u.id)">
+    Select {{ u.name }}
+  </button>
+</div>
