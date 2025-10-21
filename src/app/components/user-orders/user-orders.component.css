@@ -1,6 +1,6 @@
 :host {
     display: block;
-    box-sizing: border-box; 
+    box-sizing: border-box;
     padding: 30px;
     background-color: var(--color-bg-light);
     min-height: 100vh;
@@ -13,13 +13,36 @@ h1 {
     font-size: 2.5rem;
     font-weight: 800;
     letter-spacing: 1px;
-    animation: fadeInDown 0.5s ease-out; /* אנימציית כניסה עדינה */
+    animation: fadeInDown 0.5s ease-out;
 }
 
+h2 {
+    color: var(--color-text-dark);
+    font-size: 2em;
+    margin: 0 0 5px 0;
+}
+
+h3 {
+    color: var(--color-secondary);
+    font-size: 1.5em;
+    font-weight: 400;
+    padding: 5px 10px;
+    border-radius: 8px;
+    display: inline-block;
+    background-color: rgba(255, 112, 67, 0.1);
+}
+
+.total-count {
+    display: inline-block;
+    width: 100px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+/* 
 .user-selection-buttons {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     justify-content: center;
     padding: 20px;
-}
+} */

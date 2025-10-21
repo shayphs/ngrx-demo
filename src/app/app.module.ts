@@ -6,18 +6,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { UserNameComponent } from './components/user-orders/user-name.component';
 import { UserOrdersComponent } from './components/user-orders/user-orders.component';
-import { UserTotalComponent } from './components/user-orders/user-total.component';
-import { ordersReducer } from './store/users/order.reducer';
+import { ordersReducer } from './store/order/order.reducer';
 import { UserEffects } from './store/users/user.effects';
 import { userReducer } from './store/users/user.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserNameComponent,
-    UserTotalComponent,
   ],
   imports: [
     UserOrdersComponent,

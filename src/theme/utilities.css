@@ -1,0 +1,15 @@
+.d-flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.p-2 {
+    padding: 2em;
+}
+
+.gap-1 {
+    gap: 1em;
+}

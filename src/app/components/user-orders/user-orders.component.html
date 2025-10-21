@@ -1,33 +1,21 @@
 <h1>Users with Orders</h1>
-<div class="user-display-card">
+<app-card>
   <div *ngIf="user$ | async as user; else loading">
-
-    <app-user-name [name]="user.name"></app-user-name>
-
-    <app-user-total [total]="user.total"></app-user-total>
+    <h2>{{ user.name }}</h2>
+    <h3>Total Orders: <span animateCount [to]="user.total"  class="total-count">{{ user.total | number: '1.0-0' }}</span></h3>
   </div>
-</div>
+</app-card>
 
-<div class="user-selection-buttons">
-  <!-- <button *ngFor="let u of allUsers$ | async" (click)="selectUser(u.id)">
-    <small>Select</small> {{ u.name }}
-  </button> -->
-</div>
+<section class="d-flex justify-center p-2 gap-1">
+  <ng-container *ngFor="let usr of allUsers$ | async">
+    <app-button [actionLabel]="'Select'" [label]="usr.name" (btnClickEvent)="selectUser(usr.id)"></app-button>
+  </ng-container>
+</section>
 
 <ng-template #loading>
-  <div style="display: flex; justify-content: center;">
-    <div class="loader">
-    </div>
+  <div class="d-flex justify-center">
+    <app-loader></app-loader>
   </div>
 </ng-template>
 
-
-<div class="credit-box">
-  <h4>NGRX Demo app</h4>
-  <div>
-    <span class="label">Created by:</span>
-    <span>Shay Pinhas</span>
-    <span><a href="https://www.linkedin.com/in/shay-pinhas/" target="_blank"
-        rel="noopener noreferrer">Linkedin</a></span>
-  </div>
-</div>
+<app-credit></app-credit>

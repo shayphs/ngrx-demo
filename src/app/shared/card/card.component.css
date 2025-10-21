@@ -25,14 +25,14 @@
 
     background: conic-gradient(transparent 0%,
             transparent 30%,
-            rgb(255, 255, 255) 50%,
+            rgb(255, 255, 255) 70%,
             transparent 70%,
             transparent 100%);
     z-index: 0;
     opacity: 0.8;
 
     border-radius: 20px;
-    animation: spin 8s linear infinite;
+    animation: spin 6s linear infinite;
 }
 
 .card::after {

@@ -11,5 +11,5 @@ export class ButtonComponent {
   @Input() actionLabel!: string;
   @Input() label!: string;
 
-  @Output() btnClickEvent = new EventEmitter<any>();
+  @Output() btnClickEvent = new EventEmitter<void>();
 }

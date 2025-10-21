@@ -8,15 +8,19 @@ import { Observable } from 'rxjs';
 import { AppState } from '../../store/app.state';
 import * as UserActions from '../../store/users/user.actions';
 import { selectAllUsers, selectUserWithOrdersTotal } from '../../store/users/user.selectors';
+import { CommonModule } from '@angular/common';
+import { AnimateCountDirective } from '@app/shared/directives/animate-count.directive';
 
 @Component({
   selector: 'app-user-orders',
   standalone: true,
   imports: [
+    CommonModule,
     CardComponent,
     LoaderComponent,
     ButtonComponent,
     CreditComponent,
+    AnimateCountDirective,
   ],
   templateUrl: './user-orders.component.html',
   styleUrls: ['./user-orders.component.css'],
@@ -32,6 +36,8 @@ export class UserOrdersComponent {
   }
 
   selectUser(id: number) {
+    console.log('selectUser');
+    
     this.store.dispatch(UserActions.selectUser({ userId: id }));
   }
 }
