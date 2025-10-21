@@ -1,45 +1,38 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { UserOrdersComponent } from './components/user-orders/user-orders.component';
-import { userReducer } from './store/users/user.reducer';
-import { UserEffects } from './store/users/user.effects';
 import { UserNameComponent } from './components/user-orders/user-name.component';
+import { UserOrdersComponent } from './components/user-orders/user-orders.component';
 import { UserTotalComponent } from './components/user-orders/user-total.component';
 import { ordersReducer } from './store/users/order.reducer';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UserEffects } from './store/users/user.effects';
+import { userReducer } from './store/users/user.reducer';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserOrdersComponent,
     UserNameComponent,
     UserTotalComponent,
   ],
   imports: [
+    UserOrdersComponent,
     BrowserModule,
     BrowserAnimationsModule,
-
-    // התחלת ה-Store עם ה-Reducer שלך
     StoreModule.forRoot({
       users: userReducer,
       orders: ordersReducer
     }),
-
-    // התחלת ה-Effects
     EffectsModule.forRoot([UserEffects]),
-
-    // Redux DevTools – אפשר לבדוק את הסטור בדפדפן
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // שומר 25 מצבים אחרונים
-      logOnly: false, // אפשר גם לכתוב actions ב-devtools
+      maxAge: 25,
+      logOnly: false,
     }),
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

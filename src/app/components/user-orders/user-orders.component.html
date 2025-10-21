@@ -9,9 +9,9 @@
 </div>
 
 <div class="user-selection-buttons">
-  <button *ngFor="let u of allUsers$ | async" (click)="selectUser(u.id)">
+  <!-- <button *ngFor="let u of allUsers$ | async" (click)="selectUser(u.id)">
     <small>Select</small> {{ u.name }}
-  </button>
+  </button> -->
 </div>
 
 <ng-template #loading>
