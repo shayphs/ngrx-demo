@@ -20,7 +20,7 @@ export class AnimateCountDirective implements OnChanges, OnDestroy {
     if (changes['to'] && this.to !== undefined) {
       this.from = changes['to'].isFirstChange() ? this.from : this.currentValue; // Start from current on updates
       if (this.from === this.to) return;
-      this.cancelAnimation(); // Stop any ongoing animation
+      this.cancelAnimation(); // Stop any-ongoing animation
       this.startAnimation();
     }
   }

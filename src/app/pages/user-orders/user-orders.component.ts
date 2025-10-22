@@ -10,6 +10,7 @@ import * as UserActions from '../../store/users/user.actions';
 import { selectAllUsers, selectUserWithOrdersTotal } from '../../store/users/user.selectors';
 import { CommonModule } from '@angular/common';
 import { AnimateCountDirective } from '@shared/directives/animate-count.directive';
+import { User } from '@models/user-order.model';
 
 @Component({
   selector: 'app-user-orders',
@@ -28,7 +29,7 @@ import { AnimateCountDirective } from '@shared/directives/animate-count.directiv
 })
 export class UserOrdersComponent {
   user$!: Observable<{ name: string; total: number; id: number } | null>;
-  allUsers$!: Observable<any[]>;
+  allUsers$!: Observable<User[]>;
 
   constructor(private store: Store<AppState>) {
     this.user$ = this.store.select(selectUserWithOrdersTotal);
