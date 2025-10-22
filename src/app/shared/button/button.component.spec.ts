@@ -8,7 +8,7 @@ describe('ButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ButtonComponent]
+      imports: [ButtonComponent],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ButtonComponent);
@@ -28,13 +28,15 @@ describe('ButtonComponent', () => {
     expect(component.btnClickEvent.emit).toHaveBeenCalled();
   });
 
-  it('should display label and actionLabel in template', () => {
+  it('should display label and actionLabel in the template', () => {
     component.label = 'Test Label';
     component.actionLabel = 'Click Me';
     fixture.detectChanges();
 
     const button = fixture.debugElement.query(By.css('button')).nativeElement;
-    expect(button.textContent).toContain('Click Me');
-    expect(button.textContent).toContain('Test Label');
+    const text = button.textContent?.trim() || '';
+
+    expect(text).toContain('Click Me');
+    expect(text).toContain('Test Label');
   });
 });

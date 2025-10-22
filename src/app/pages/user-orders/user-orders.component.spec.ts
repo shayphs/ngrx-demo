@@ -23,14 +23,16 @@ describe('UserOrdersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [UserOrdersComponent],
-      providers: [provideMockStore({ initialState })]
+      providers: [provideMockStore({ initialState })],
     }).compileComponents();
+
+    store = TestBed.inject(MockStore);
+    spyOn(store, 'dispatch').and.callThrough();
 
     fixture = TestBed.createComponent(UserOrdersComponent);
     component = fixture.componentInstance;
-    store = TestBed.inject(MockStore);
 
-    spyOn(store, 'dispatch').and.callThrough();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
