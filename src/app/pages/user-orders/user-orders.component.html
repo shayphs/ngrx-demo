@@ -2,8 +2,8 @@
 <app-card>
   @if (user$ | async; as user) {
   <h2>{{ user.name }}</h2>
-  <h3>Total Orders: <span animateCount [to]="user.total" class="total-count">{{ user.total | number: '1.0-0' }}</span>
-  </h3>
+  <div class="total-label">Total Orders: <span animateCount [to]="user.total" class="total-count">{{ user.total | number: '1.0-0' }}</span>
+  </div>
   } @else {
   <div class="d-flex justify-center">
     <app-loader></app-loader>

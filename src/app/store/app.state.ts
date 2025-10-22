@@ -1,5 +1,5 @@
 import { UserState } from './users/user.state';
-import { Order } from '../models/user-order.model';
+import { Order } from '@models/user-order.model';
 
 export interface AppState {
   users: UserState;

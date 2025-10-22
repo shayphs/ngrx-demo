@@ -22,7 +22,7 @@ h2 {
     margin: 0 0 5px 0;
 }
 
-h3 {
+.total-label {
     color: var(--color-secondary);
     font-size: 1.5em;
     font-weight: 400;

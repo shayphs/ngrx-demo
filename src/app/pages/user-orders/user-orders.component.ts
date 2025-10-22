@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ButtonComponent } from '@app/shared/button/button.component';
-import { CardComponent } from '@app/shared/card/card.component';
-import { LoaderComponent } from '@app/shared/loader/loader.component';
+import { ButtonComponent } from '@shared/button/button.component';
+import { CardComponent } from '@shared/card/card.component';
+import { LoaderComponent } from '@shared/loader/loader.component';
 import { Store } from '@ngrx/store';
 import { CreditComponent } from '@shared/credit/credit.component';
 import { Observable } from 'rxjs';
@@ -9,7 +9,7 @@ import { AppState } from '../../store/app.state';
 import * as UserActions from '../../store/users/user.actions';
 import { selectAllUsers, selectUserWithOrdersTotal } from '../../store/users/user.selectors';
 import { CommonModule } from '@angular/common';
-import { AnimateCountDirective } from '@app/shared/directives/animate-count.directive';
+import { AnimateCountDirective } from '@shared/directives/animate-count.directive';
 
 @Component({
   selector: 'app-user-orders',
