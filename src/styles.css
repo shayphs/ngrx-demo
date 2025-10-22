@@ -4,7 +4,6 @@
 @import "./theme/variables.css";
 @import "./theme/utilities.css";
 @import "./theme/animations.css";
-@import "./theme/dark-mode.css";
 
 body {
     margin: 0;
