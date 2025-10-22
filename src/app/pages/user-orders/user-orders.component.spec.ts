@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { UserOrdersComponent } from './user-orders.component';
 import { User } from '@models/user-order.model';
-import * as UserActions from '../../store/users/user.actions';
+import * as UserActions from '@store/users/user.actions';
 import { of } from 'rxjs';
 
 describe('UserOrdersComponent', () => {

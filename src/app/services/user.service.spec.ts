@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { UserService } from './user.service';
 import { of } from 'rxjs';
-import { mockUsers } from '../store/users/user.state';
+import { mockUsers } from '@store/users/user.state';
 
 describe('UserService', () => {
   let service: UserService;
