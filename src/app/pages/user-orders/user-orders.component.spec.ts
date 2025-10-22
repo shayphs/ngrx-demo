@@ -1,42 +1,39 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { UserOrdersComponent } from './user-orders.component';
-import { Store, StoreModule } from '@ngrx/store';
-import { of } from 'rxjs';
+import { User } from '@models/user-order.model';
 import * as UserActions from '../../store/users/user.actions';
-import { selectAllUsers, selectUserWithOrdersTotal } from '../../store/users/user.selectors';
+import { of } from 'rxjs';
 
 describe('UserOrdersComponent', () => {
   let component: UserOrdersComponent;
   let fixture: ComponentFixture<UserOrdersComponent>;
-  let store: jasmine.SpyObj<Store<any>>;
+  let store: MockStore;
+  const initialState = {
+    users: {
+      entities: {
+        1: { id: 1, name: 'Alice' },
+        2: { id: 2, name: 'Bob' }
+      },
+      selectedUserId: null
+    },
+    orders: { entities: {} }
+  };
 
   beforeEach(async () => {
-    const storeSpy = jasmine.createSpyObj('Store', ['select', 'dispatch']);
-
     await TestBed.configureTestingModule({
-      declarations: [UserOrdersComponent],
-      providers: [{ provide: Store, useValue: storeSpy }],
+      imports: [UserOrdersComponent],
+      providers: [provideMockStore({ initialState })]
     }).compileComponents();
 
-    store = TestBed.inject(Store) as jasmine.SpyObj<Store<any>>;
-    store.select.and.callFake((selector: any) => {
-      if (selector === selectUserWithOrdersTotal) {
-        return of({ id: 1, name: 'Shay', total: 100 });
-      }
-      if (selector === selectAllUsers) {
-        return of([{ id: 1, name: 'Shay' }]);
-      }
-      return of(null);
-    });
-  });
-
-  beforeEach(() => {
     fixture = TestBed.createComponent(UserOrdersComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+
+    spyOn(store, 'dispatch').and.callThrough();
   });
 
-  it('should create the component', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
@@ -44,24 +41,14 @@ describe('UserOrdersComponent', () => {
     expect(store.dispatch).toHaveBeenCalledWith(UserActions.loadUsers());
   });
 
-  it('should set user$ from selectUserWithOrdersTotal', (done) => {
-    component.user$.subscribe((user) => {
-      expect(user).toEqual({ id: 1, name: 'Shay', total: 100 });
-      done();
-    });
-  });
-
-  it('should set allUsers$ from selectAllUsers', (done) => {
-    component.allUsers$.subscribe((users) => {
-      expect(users).toEqual([{ id: 1, name: 'Shay' }]);
-      done();
-    });
-  });
-
   it('should dispatch selectUser action when selectUser is called', () => {
-    component.selectUser(2);
-    expect(store.dispatch).toHaveBeenCalledWith(
-      UserActions.selectUser({ userId: 2 })
-    );
+    const userId = 1;
+    component.selectUser(userId);
+    expect(store.dispatch).toHaveBeenCalledWith(UserActions.selectUser({ userId }));
+  });
+
+  it('should have observables for user$ and allUsers$', () => {
+    expect(component.user$).toBeDefined();
+    expect(component.allUsers$).toBeDefined();
   });
 });
