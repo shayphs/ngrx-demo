@@ -18,4 +18,19 @@ describe('User State', () => {
     const state: UserState = userAdapter.setAll(mockUsers, initialUserState);
     expect(state.selectedUserId).toBe(1);
   });
+
+  it('should add a single user using addOne', () => {
+    const newUser = { id: 4, name: 'Dana' };
+    const newState = userAdapter.addOne(newUser, initialUserState);
+    const allUsers = userAdapter.getSelectors().selectAll(newState);
+    expect(allUsers.length).toBe(1);
+    expect(allUsers[0].name).toBe('Dana');
+  });
+
+  it('should remove a user using removeOne', () => {
+    const populated = userAdapter.setAll(mockUsers, initialUserState);
+    const newState = userAdapter.removeOne(2, populated);
+    const allUsers = userAdapter.getSelectors().selectAll(newState);
+    expect(allUsers.map(u => u.id)).toEqual([1, 3]);
+  });
 });

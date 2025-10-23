@@ -20,7 +20,10 @@ describe('User Selectors', () => {
     3: { id: 3, userId: 2, total: 30 },
   };
 
-  const initialState: UserState = userAdapter.setAll(users, userAdapter.getInitialState({ selectedUserId: 1 }));
+  const initialState: UserState = userAdapter.setAll(
+    users,
+    userAdapter.getInitialState({ selectedUserId: 1 })
+  );
   const appState: AppState = { users: initialState, orders: { entities: orders } };
 
   it('should select all users', () => {
@@ -44,6 +47,16 @@ describe('User Selectors', () => {
     expect(result.map(o => o.total)).toEqual([100, 50]);
   });
 
+  it('should return empty array if no user selected', () => {
+    const result = selectOrdersOfSelectedUser.projector(null, orders);
+    expect(result).toEqual([]);
+  });
+
+  it('should return empty array if no orders exist', () => {
+    const result = selectOrdersOfSelectedUser.projector(1, undefined as any);
+    expect(result).toEqual([]);
+  });
+
   it('should select user with orders total', () => {
     const result = selectUserWithOrdersTotal.projector(
       { id: 1, name: 'Alice' },
@@ -53,5 +66,18 @@ describe('User Selectors', () => {
       ]
     );
     expect(result).toEqual({ id: 1, name: 'Alice', total: 150 });
+  });
+
+  it('should return null if no user selected', () => {
+    const result = selectUserWithOrdersTotal.projector(null, []);
+    expect(result).toBeNull();
+  });
+
+  it('should compute correct total end-to-end', () => {
+    const user = selectSelectedUser.projector(users, 1);
+    const userOrders = selectOrdersOfSelectedUser.projector(1, orders);
+    const total = selectUserWithOrdersTotal.projector(user, userOrders);
+
+    expect(total).toEqual({ id: 1, name: 'Alice', total: 150 });
   });
 });

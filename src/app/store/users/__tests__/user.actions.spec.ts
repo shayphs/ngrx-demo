@@ -22,4 +22,17 @@ describe('User Actions', () => {
     expect(action.type).toBe('[User] Select User');
     expect(action.userId).toBe(5);
   });
+
+  it('should create addOrUpdateUser action with user payload', () => {
+    const user: User = { id: 3, name: 'Charlie' };
+    const action = UserActions.addOrUpdateUser({ user });
+    expect(action.type).toBe('[User] Add Or Update User');
+    expect(action.user).toEqual(user);
+  });
+
+  it('should create deleteUser action with userId payload', () => {
+    const action = UserActions.deleteUser({ userId: 10 });
+    expect(action.type).toBe('[User] Delete User');
+    expect(action.userId).toBe(10);
+  });
 });

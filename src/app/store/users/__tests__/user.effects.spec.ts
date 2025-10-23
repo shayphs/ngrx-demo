@@ -6,24 +6,32 @@ import * as UserActions from '../user.actions';
 import { UserService } from '../../../services/user.service';
 import { hot, cold } from 'jasmine-marbles';
 import { User } from '@models/user-order.model';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('UserEffects', () => {
   let actions$: Observable<any>;
   let effects: UserEffects;
   let userService: jasmine.SpyObj<UserService>;
 
+  const initialState = {
+    users: [],
+    selectedUserId: null
+  };
+
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('UserService', ['getUsers']);
+    const spy = jasmine.createSpyObj('UserService', ['getUsers', 'getUserDetails']);
 
     TestBed.configureTestingModule({
       providers: [
         UserEffects,
         provideMockActions(() => actions$),
+        provideMockStore({ initialState }),
         { provide: UserService, useValue: spy },
       ],
     });
 
     effects = TestBed.inject(UserEffects);
+
     userService = TestBed.inject(UserService) as jasmine.SpyObj<UserService>;
   });
 

@@ -9,6 +9,14 @@ export const userReducer = createReducer(
     userAdapter.upsertMany(users, state)
   ),
 
+  on(UserActions.addOrUpdateUser, (state, { user }) =>
+    userAdapter.upsertOne(user, state)
+  ),
+
+  on(UserActions.deleteUser, (state, { userId }) =>
+    userAdapter.removeOne(userId, state)
+  ),
+
   on(UserActions.selectUser, (state, { userId }) => ({
     ...state,
     selectedUserId: userId
