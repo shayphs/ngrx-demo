@@ -1,0 +1,34 @@
+﻿<section class="todo-shell">
+  <header class="todo-header">
+    <h1>Clean Todo List</h1>
+    <p>דוגמה קטנה לארכיטקטורה נקייה לפי דוד בוב</p>
+  </header>
+
+  <form class="todo-form" (submit)="addTodo(); $event.preventDefault()">
+    <input
+      type="text"
+      [formControl]="titleControl"
+      placeholder="הכנס משימה חדשה"
+      aria-label="כותרת משימה"
+    />
+    <button type="submit">הוסף</button>
+  </form>
+
+  <div class="error" *ngIf="titleControl.touched && titleControl.invalid">
+    הכותרת חייבת להכיל לפחות תו אחד
+  </div>
+
+  <ul class="todo-list" *ngIf="(todos$ | async) as todos">
+    <li *ngFor="let todo of todos; trackBy: trackById" [class.completed]="todo.completed">
+      <label>
+        <input type="checkbox" [checked]="todo.completed" (change)="toggleTodo(todo)" />
+        <span>{{ todo.title }}</span>
+      </label>
+      <button type="button" class="remove" (click)="removeTodo(todo)">מחק</button>
+    </li>
+
+    <li class="empty" *ngIf="todos.length === 0">
+      אין משימות עדיין. הוסף משימה ראשונה למעלה.
+    </li>
+  </ul>
+</section>

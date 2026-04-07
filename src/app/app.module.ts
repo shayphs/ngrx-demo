@@ -6,7 +6,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { UserOrdersComponent } from './pages/user-orders/user-orders.component';
+import { TodoListComponent } from './clean-demo/presentation/todo-list/todo-list.component';
 import { ordersReducer } from '@store/order/order.reducer';
 import { UserEffects } from '@store/users/user.effects';
 import { userReducer } from '@store/users/user.reducer';
@@ -16,7 +16,7 @@ import { userReducer } from '@store/users/user.reducer';
     AppComponent,
   ],
   imports: [
-    UserOrdersComponent,
+    TodoListComponent,
     BrowserModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({
